@@ -5,6 +5,9 @@ import { NavLink } from "react-router-dom";
 import { sign } from "crypto";
 import NavBar from "./components/commons/NavBar";
 import SideNav from "./components/commons/SideNav";
+import UIkit from "uikit";
+import Icons from "uikit/dist/js/uikit-icons";
+import "uikit/dist/css/uikit.min.css";  
 const Router = props => {
   let { state, handlers } = props;
   console.log("Router ", state.state.user ? "a" : "b");
