@@ -18,11 +18,11 @@ export default class NavBar extends Component {
   render() {
     let { title, linklist } = this.props;
     return (
-      <nav>
+      <StyledNav>
         <a href="#my-id" uk-toggle>
           <StyledNavElement>C</StyledNavElement>
         </a>
-      </nav>
+      </StyledNav>
     );
   }
 }
