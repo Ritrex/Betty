@@ -11,7 +11,7 @@ const path = require("path");
 const cors = require("cors");
 
 mongoose
-  .connect("mongodb://localhost/betty-api", { useNewUrlParser: true })
+  .connect(process.env.DB, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -63,7 +63,7 @@ app.use("/user", auth);
 app.use("/proceso", proceso);
 app.use("/fase", fase);
 app.use("/document", doc);
-app.use("*",(req,res)=>{
-  res.sendFile(path.join(__dirname,"public", "index.html"))
-})
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 module.exports = app;

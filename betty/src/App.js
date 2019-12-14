@@ -3,11 +3,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import Router from "./Router";
 import axios from "axios";
-
+import NavBar from "./components/commons/NavBar";
+import SideNav from "./components/commons/SideNav";
+import UIkit from "uikit";
+import Icons from "uikit/dist/js/uikit-icons";
+import "uikit/dist/css/uikit.min.css";
 class App extends Component {
   constructor() {
     super();
-    console.log(localStorage)
+    console.log(localStorage);
     let user = JSON.parse(localStorage.getItem("user"));
     //let token = JSON.parse(localStorage.getItem("token"));
     this.state = { user, isFetching: false };

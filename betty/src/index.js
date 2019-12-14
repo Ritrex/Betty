@@ -4,10 +4,12 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
+import NavBar from "./components/commons/NavBar";
+import SideNav from "./components/commons/SideNav";
 import UIkit from "uikit";
 import Icons from "uikit/dist/js/uikit-icons";
 import "uikit/dist/css/uikit.min.css";
-
+UIkit.use(Icons);
 const WithBrowser = () => (
   <BrowserRouter>
     <App />
