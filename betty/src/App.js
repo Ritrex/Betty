@@ -39,7 +39,7 @@ class App extends Component {
     let { email, password } = e.target;
     console.log("Login\n", email.value, password.value, "E", state);
     axios
-      .post("http://localhost:3005/api/user/login", {
+      .post("https://bettymanager.herokuapp.com/api/user/login", {
         email: email.value,
         password: password.value
         // token: state.token
@@ -72,7 +72,7 @@ class App extends Component {
       confpassword.value
     );
     axios
-      .post("http://localhost:3005/api/user/signup", {
+      .post("https://bettymanager.herokuapp.com/api/user/signup", {
         email: email.value,
         password: password.value,
         confpassword: confpassword.value,
@@ -110,7 +110,7 @@ class App extends Component {
       confpassword.value
     );
     axios.post(
-      `http://localhost:3005/api/user/update/${state.state.user._id}`,
+      `https://bettymanager.herokuapp.com/api/user/update/${state.state.user._id}`,
       {
         email: email.value,
         password: password.value,
@@ -120,11 +120,26 @@ class App extends Component {
     );
   };
 
+  getUser = (e, state) => {
+    let { user } = this.state.state.user;
+    axios
+      .post(`https://bettymanager.herokuapp.com/api/user${user}`)
+      .then(user => {
+        console.log("User retrieved & found:", user);
+      });
+  };
+
   createTask = (e, state, userid) => {};
 
   deleteTask = (e, state, userid, taskid) => {};
 
   updateTask = (e, state, userid, taskid) => {};
+
+  createProcess = (e, state, userid, taskid) => {};
+
+  deleteProcess = (e, state, userid, taskid, processid) => {};
+
+  updateProcess = (e, state, userid, taskid, processid) => {};
 }
 
 export default App;

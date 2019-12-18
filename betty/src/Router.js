@@ -36,7 +36,12 @@ const Router = props => {
                 {state.state.user ? "" : <table></table>}
 
                 {state.state.user ? (
-                  <button onClick={handlers.handleLogout}>Logout</button>
+                  <button
+                    style={{ width: "40%" }}
+                    onClick={handlers.handleLogout}
+                  >
+                    Logout
+                  </button>
                 ) : (
                   ""
                 )}
@@ -64,8 +69,12 @@ const Router = props => {
               </SheetContainer>
             )}
           </Route>
-          <Route exact path="/task/new">
-            {/* New task form here */}
+          <Route exact path="/user/:userid/task/new">
+            {state.state.user ? (
+              <Redirect to="/"></Redirect>
+            ) : (
+              <SheetContainer></SheetContainer>
+            )}
           </Route>
           <Route exact path="/task/all">
             {/* All tasks shown here */}

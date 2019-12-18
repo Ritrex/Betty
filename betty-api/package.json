@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "dev": "DEBUG=betty-api:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www",
-    "deploy": "cd .. && git subtree push --prefix betty-api heroku master"
+    "deploy": "cd .. && git subtree push --prefix betty-api heroku master",
+    "builddeploy": "cd ../betty/ && yarn react-scripts build && cp -rf build/* ../betty-api/public && cd .. && git subtree push --prefix betty-api heroku master"
   },
   "dependencies": {
     "bcrypt": "^3.0.7",
