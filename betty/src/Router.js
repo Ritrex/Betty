@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Form from "./components/Form";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { sign } from "crypto";
 import NavBar from "./components/commons/NavBar";
 import SideNav from "./components/commons/SideNav";
@@ -15,39 +15,69 @@ const Router = props => {
   console.log("Router ", state.state.user ? "a" : "b");
   return (
     <ContentContainer>
-      <NavBar></NavBar>
+      {/* <NavBar></NavBar> */}
       <BottomContainer>
-        <SideNav state={state}></SideNav>
+        <SideNav state={state} handlers={handlers}></SideNav>
         <Switch>
           <Route exact path="/">
-            {console.log("hey")}
-            <h1>
-              {state.state.user
-                ? `Bienvenido ${state.state.user.name}`
-                : "Home"}
-            </h1>
-            {state.state.user ? "" : <NavLink to="/user/login">Login</NavLink>}
-            {state.state.user ? (
-              ""
-            ) : (
-              <NavLink to="/user/signup">Signup</NavLink>
-            )}
-            {state.state.user ? (
-              <button onClick={handlers.handleLogout}>Logout</button>
-            ) : (
-              ""
-            )}
+            <SheetContainer>
+              <div
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "center"
+                }}
+              >
+                <h1 style={{}}>
+                  {state.state.user ? "Tareas recientes" : `Bienvenido`}
+                </h1>
+                {state.state.user ? "" : <table></table>}
+
+                {state.state.user ? (
+                  <button onClick={handlers.handleLogout}>Logout</button>
+                ) : (
+                  ""
+                )}
+              </div>
+            </SheetContainer>
           </Route>
           <Route exact path="/user/update">
-            <Form update handler={handlers.handleUpdate}></Form>
+            <SheetContainer style={{ height: "80%", width: "80%" }}>
+              <Form update handler={handlers.handleUpdate}></Form>
+            </SheetContainer>
           </Route>
-          <Route exact path="/user/signup">
-            <Form signup handler={handlers.handleSignup} state={state}></Form>
-            <NavLink to="/">Home</NavLink>
+          <Route
+            exact
+            path="/user/signup"
+            style={{ height: "100%", width: "80%" }}
+          >
+            ><Form signup handler={handlers.handleSignup} state={state}></Form>
           </Route>
           <Route exact path="/user/login">
-            <Form handler={handlers.handleLogin} state={state}></Form>
-            <NavLink to="/">Home</NavLink>
+            {state.state.user ? (
+              <Redirect to="/"></Redirect>
+            ) : (
+              <SheetContainer style={{ height: "100%", width: "80%" }}>
+                <Form handler={handlers.handleLogin} state={state}></Form>
+              </SheetContainer>
+            )}
+          </Route>
+          <Route exact path="/task/new">
+            {/* New task form here */}
+          </Route>
+          <Route exact path="/task/all">
+            {/* All tasks shown here */}
+          </Route>
+          <Route exact path="/task/:taskid">
+            {/* Task shown here */}
+          </Route>
+          <Route exact path="/task/:taskid/documents">
+            {/* Task associated processes here */}
+          </Route>
+          <Route exact path="/tak/:taskid/document/:documentid">
+            {/* Document info here */}
           </Route>
           <Route path="/">
             <h1>404</h1>
@@ -63,7 +93,7 @@ const Router = props => {
 };
 
 const BottomContainer = styled.div`
-  height: 90%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-flow: row;
@@ -72,6 +102,18 @@ const BottomContainer = styled.div`
 const ContentContainer = styled.div`
   height: 100%;
   width: 100%;
+`;
+
+const SheetContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  // background-image: url("/sheet.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  width:80%
+  height:80%
 `;
 
 export default Router;

@@ -54,15 +54,15 @@ app.locals.title = "Express - Generated with IronGenerator";
 
 const index = require("./routes/index");
 const auth = require("./routes/auth");
-const proceso = require("./routes/proceso");
-const fase = require("./routes/fase");
+const proceso = require("./routes/process");
+const fase = require("./routes/phase");
 const doc = require("./routes/document");
 
-app.use("/", index);
-app.use("/user", auth);
-app.use("/proceso", proceso);
-app.use("/fase", fase);
-app.use("/document", doc);
+app.use("/api/", index);
+app.use("/api/user", auth);
+app.use("/api/process", proceso);
+app.use("/api/phase", fase);
+app.use("/api/document", doc);
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });

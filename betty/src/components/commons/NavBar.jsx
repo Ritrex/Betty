@@ -14,7 +14,7 @@ const StyledNav = styled.nav`
   height: 10%;
   width: 100%;
 `;
-
+// background-color: #221100;
 const Img100 = styled.img`
   width: 100%;
   height: 100%;
@@ -25,7 +25,7 @@ export default class NavBar extends Component {
     return (
       <StyledNav>
         <StyledNavElement>
-          <a
+          {/* <a
             id={"burger"}
             href="#my-id"
             onClick={() => {
@@ -35,13 +35,13 @@ export default class NavBar extends Component {
             }}
           >
             <Img100 src="/hamburger.png"></Img100>
-          </a>
+          </a> */}
         </StyledNavElement>
 
-        <StyledNavElement>
-          <a id={"bell"} href="#" uk-toggle="true">
-            <Img100 src="/bell.png"></Img100>
-          </a>
+        <StyledNavElement uk-icon={"bell"}>
+          {/* <a id={"bell"} href="#" uk-toggle="true">
+            {/* <Img100 src="/bell.png"></Img100> 
+          </a> */}
         </StyledNavElement>
       </StyledNav>
     );

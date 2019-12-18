@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const Proceso = require("../models/Proceso");
+const Proceso = require("../models/Process");
 const User = require("../models/User");
 const Organization = require("../models/Organization");
 router.post("/create", (req, res, next) => {

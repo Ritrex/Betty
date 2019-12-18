@@ -17,3 +17,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Courier Prime", monospace !important;
+}
+
+.Signup label {
+  font-family: "Courier Prime", monospace;
+  font-size: 2em;
+}
+.Signup input {
+  border-bottom: 2px solid white !important;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 20px;
+  color: white;
+}
+.Signup label {
+  color: white;
+  font-size: 2em;
+}

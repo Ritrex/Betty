@@ -9,7 +9,9 @@ import SideNav from "./components/commons/SideNav";
 import UIkit from "uikit";
 import Icons from "uikit/dist/js/uikit-icons";
 import "uikit/dist/css/uikit.min.css";
+
 UIkit.use(Icons);
+
 const WithBrowser = () => (
   <BrowserRouter>
     <App />

@@ -47,6 +47,7 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   let { email, password } = req.body;
+  console.log(email, ",", password);
   const salt = bcrypt.genSaltSync(10);
   const hashPassword = bcrypt.hashSync(password, salt);
 
@@ -55,7 +56,7 @@ router.post("/login", (req, res, next) => {
       console.log(user);
       console.log(user.password, "\n", hashPassword);
       if (bcrypt.compareSync(user.password, hashPassword))
-        return res.status(400).json({ error: "Password don't match" });
+        return res.status(400).json({ error: "Passwords don't match" });
       jwt.sign(
         {
           id: user._id
@@ -74,6 +75,7 @@ router.post("/login", (req, res, next) => {
       );
     })
     .catch(error => {
+      console.log(error);
       return res.status(404).json({ error });
     });
 });

@@ -8,6 +8,7 @@ import SideNav from "./components/commons/SideNav";
 import UIkit from "uikit";
 import Icons from "uikit/dist/js/uikit-icons";
 import "uikit/dist/css/uikit.min.css";
+import { Redirect } from "react-router-dom";
 class App extends Component {
   constructor() {
     super();
@@ -36,11 +37,12 @@ class App extends Component {
   handleLogin = (e, state) => {
     e.preventDefault();
     let { email, password } = e.target;
-    console.log("Login\n", email.value, password.value, state);
+    console.log("Login\n", email.value, password.value, "E", state);
     axios
-      .post("http://localhost:3005/user/login", {
+      .post("http://localhost:3005/api/user/login", {
         email: email.value,
         password: password.value
+        // token: state.token
       })
       .then(res => {
         let { user, token } = res.data;
@@ -51,9 +53,10 @@ class App extends Component {
         console.log("Uno", state, state.setState({ user, token }));
 
         console.log("logged in", state);
+        return <Redirect to="/"></Redirect>;
       })
       .catch(error => {
-        console.log("uh..", error);
+        console.log("There was an error trying to log in:", error);
         //push("/");
       });
   };
@@ -69,7 +72,7 @@ class App extends Component {
       confpassword.value
     );
     axios
-      .post("http://localhost:3005/user/signup", {
+      .post("http://localhost:3005/api/user/signup", {
         email: email.value,
         password: password.value,
         confpassword: confpassword.value,
@@ -78,7 +81,6 @@ class App extends Component {
       .then(res => {
         let { user, token } = res.data;
         console.log(user, token);
-        console.log("!");
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", token);
         state.setState({ user });
@@ -90,9 +92,10 @@ class App extends Component {
       });
   };
 
-  handleLogout = (e, state) => {
+  handleLogout = e => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    //state.setState({ user: null });
     //state.setState({ user: null });
   };
 
@@ -106,13 +109,22 @@ class App extends Component {
       password.value,
       confpassword.value
     );
-    axios.post(`http://localhost:3005/user/update/${state.state.user._id}`, {
-      email: email.value,
-      password: password.value,
-      confpassword: confpassword.value,
-      name: name.value
-    });
+    axios.post(
+      `http://localhost:3005/api/user/update/${state.state.user._id}`,
+      {
+        email: email.value,
+        password: password.value,
+        confpassword: confpassword.value,
+        name: name.value
+      }
+    );
   };
+
+  createTask = (e, state, userid) => {};
+
+  deleteTask = (e, state, userid, taskid) => {};
+
+  updateTask = (e, state, userid, taskid) => {};
 }
 
 export default App;

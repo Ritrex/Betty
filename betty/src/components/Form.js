@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { sign } from "crypto";
-
+import { Formulario } from "./commons/styleds/Formulario";
 class Form extends Component {
   handleSubmit(e, signup, handler, state) {
     e.preventDefault();
     console.log("?", signup, state);
     handler(e, state);
   }
+
   render() {
     let { signup } = this.props;
     let { edit } = this.props;
@@ -18,8 +18,9 @@ class Form extends Component {
       <div
         className="Signup"
         onSubmit={e => this.handleSubmit(e, signup, handler, state)}
+        style={{ Display: "flex", flexDirection: "column" }}
       >
-        <form action="submit">
+        <Formulario action="submit" alto="100vh" ancho="600px">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -56,9 +57,10 @@ class Form extends Component {
           <button type="submit">
             {signup ? "Register" : edit ? "Update" : "Login"}
           </button>
-        </form>
+        </Formulario>
       </div>
     );
   }
 }
+
 export default Form;

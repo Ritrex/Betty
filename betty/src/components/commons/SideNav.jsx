@@ -7,11 +7,22 @@ const SideNavContainer = styled.div`
   height: 100%;
   width: 20%;
   background-color: #ffffff;
+  background-image: url("/brownsheet.jpg");
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  h3 {
+    border-bottom: 2px solid #93592b;
+  }
 `;
 // background-color: #cec4a2;
 const SideList = styled.ul`
   list-style: none;
   color: black;
+  padding: 0px;
 `;
 
 class SideListElement extends Component {
@@ -20,7 +31,10 @@ class SideListElement extends Component {
 
     return (
       <li>
-        <Link style={{ textDecoration: "none", color: "#BB5500" }} to={link}>
+        <Link
+          style={{ textDecoration: "none", color: "rgb(170, 77, 0)" }}
+          to={link}
+        >
           {content}
         </Link>
       </li>
@@ -35,38 +49,46 @@ class SideListElement extends Component {
 export default class SideNav extends Component {
   render = () => {
     let { state, handlers, exceptions } = this.props;
-    let { user } = state;
+    let { user } = state.state;
     return (
       <SideNavContainer>
         <SideList>
-          User
-          {state.user ? (
-            ""
-          ) : (
-            <SideListElement link="/user/login" content="Log in" />
-          )}
-          {state.user ? (
+          <h3>Home</h3>
+          <SideListElement link="/" content="Front Page"></SideListElement>
+        </SideList>
+        <SideList>
+          <h3>User</h3>
+          {user ? "" : <SideListElement link="/user/login" content="Log in" />}
+          {user ? (
             ""
           ) : (
             <SideListElement link="/user/signup" content="Sign up" />
           )}
-          {state.user ? (
+          {user ? (
             <SideListElement
-              onClick={handlers.handleLogout}
+              click={handlers.handleLogout}
               content="Log out"
+              link=""
             />
           ) : (
             ""
           )}
         </SideList>
         <SideList>
-          Procesos
-          <SideListElement link="/" content="Nuevo Proceso" />
+          <h3>Procesos</h3>
+          <SideListElement link="/user/:userid/tasks" content="Nuevo Proceso" />
         </SideList>
-        <SideList>
-          Tareas
-          <SideListElement link="/" content="Nueva Tarea"></SideListElement>
-        </SideList>
+        {user ? (
+          <SideList>
+            <h3>Tareas</h3>
+            <SideListElement
+              link="/user/:userid/task/new"
+              content="Nueva Tarea"
+            ></SideListElement>
+          </SideList>
+        ) : (
+          ""
+        )}
       </SideNavContainer>
     );
   };
