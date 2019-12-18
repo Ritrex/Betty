@@ -27,7 +27,7 @@ const debug = require("debug")(
 );
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: ["*"] }));
 // Middleware Setup
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -64,6 +64,6 @@ app.use("/api/process", proceso);
 app.use("/api/phase", fase);
 app.use("/api/document", doc);
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "public/build", "index.html"));
 });
 module.exports = app;

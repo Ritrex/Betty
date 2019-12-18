@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp -r build/ ../betty-api/public",
+    "build": "react-scripts build && cp -rf build/ ../betty-api/public",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
