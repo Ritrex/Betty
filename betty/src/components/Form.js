@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { sign } from "crypto";
 import { Formulario } from "./commons/styleds/Formulario";
 class Form extends Component {
   handleSubmit(e, signup, handler, state) {

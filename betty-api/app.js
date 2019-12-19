@@ -27,7 +27,9 @@ const debug = require("debug")(
 );
 
 const app = express();
-app.use(cors({ origin: ["*"] }));
+app.use(cors({ origin: ["http://localhost:3000","https://bettymanager.herokuapp.com/"] }));
+
+
 // Middleware Setup
 app.use(logger("dev"));
 app.use(bodyParser.json());

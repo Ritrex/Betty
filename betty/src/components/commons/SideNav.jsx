@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "uikit/dist/css/uikit.min.css";
+
 const SideNavContainer = styled.div`
   height: 100%;
   width: 20%;
@@ -50,6 +51,7 @@ export default class SideNav extends Component {
   render = () => {
     let { state, handlers, exceptions } = this.props;
     let { user } = state.state;
+    //console.log(params);
     return (
       <SideNavContainer>
         <SideList>
@@ -65,25 +67,28 @@ export default class SideNav extends Component {
             <SideListElement link="/user/signup" content="Sign up" />
           )}
           {user ? (
-            <SideListElement
-              click={handlers.handleLogout}
-              content="Log out"
-              link=""
-            />
+            <SideListElement click={handlers.handleLogout} content="Log out" />
           ) : (
             ""
           )}
         </SideList>
-        <SideList>
-          <h3>Procesos</h3>
-          <SideListElement link="/user/:userid/tasks" content="Nuevo Proceso" />
-        </SideList>
+        {/* {user ? (
+          <SideList>
+            <h3>Procesos</h3>
+            <SideListElement
+              link="/user/:userid/tasks"
+              content="Nuevo Proceso"
+            />
+          </SideList>
+        ) : (
+          ""
+        )} */}
         {user ? (
           <SideList>
-            <h3>Tareas</h3>
+            <h3>Trabajo</h3>
             <SideListElement
               link="/user/:userid/task/new"
-              content="Nueva Tarea"
+              content="Nuevo Trabajo"
             ></SideListElement>
           </SideList>
         ) : (

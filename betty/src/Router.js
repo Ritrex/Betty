@@ -30,10 +30,17 @@ const Router = props => {
                   textAlign: "center"
                 }}
               >
-                <h1 style={{}}>
+                <h1 style={{ color: "white" }}>
                   {state.state.user ? "Tareas recientes" : `Bienvenido`}
                 </h1>
-                {state.state.user ? "" : <table></table>}
+                {state.state.user ? (
+                  ""
+                ) : (
+                  <div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                )}
 
                 {state.state.user ? (
                   <button
@@ -73,7 +80,9 @@ const Router = props => {
             {state.state.user ? (
               <Redirect to="/"></Redirect>
             ) : (
-              <SheetContainer></SheetContainer>
+              <SheetContainer>
+                <form></form>
+              </SheetContainer>
             )}
           </Route>
           <Route exact path="/task/all">

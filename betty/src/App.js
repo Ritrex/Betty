@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Router from "./Router";
 import axios from "axios";
-import NavBar from "./components/commons/NavBar";
-import SideNav from "./components/commons/SideNav";
-import UIkit from "uikit";
-import Icons from "uikit/dist/js/uikit-icons";
 import "uikit/dist/css/uikit.min.css";
 import { Redirect } from "react-router-dom";
 class App extends Component {
@@ -17,6 +12,13 @@ class App extends Component {
     //let token = JSON.parse(localStorage.getItem("token"));
     this.state = { user, isFetching: false };
     if (user !== undefined) console.log("user found: ", user);
+    if (user !== undefined && user !== null) {
+      let tasks = axios.post(
+        "https://bettymanager.herokuapp.com/api/user/tasks",
+        { user }
+      );
+      let;
+    }
   }
 
   render() {
@@ -97,6 +99,7 @@ class App extends Component {
     localStorage.removeItem("token");
     //state.setState({ user: null });
     //state.setState({ user: null });
+    return <Redirect to="/"></Redirect>;
   };
 
   handleUpdate = (e, state) => {
@@ -127,6 +130,14 @@ class App extends Component {
       .then(user => {
         console.log("User retrieved & found:", user);
       });
+  };
+
+  getUserTasks = (e, state) => {
+    let { user } = this.state.state;
+    axios
+      .post(`https://bettymanager.herokuapp.com/api/task/`)
+      .then()
+      .catch();
   };
 
   createTask = (e, state, userid) => {};
