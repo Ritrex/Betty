@@ -12,13 +12,12 @@ class App extends Component {
     //let token = JSON.parse(localStorage.getItem("token"));
     this.state = { user, isFetching: false };
     if (user !== undefined) console.log("user found: ", user);
-    if (user !== undefined && user !== null) {
-      let tasks = axios.post(
-        "https://bettymanager.herokuapp.com/api/user/tasks",
-        { user }
-      );
-      let;
-    }
+    // if (user !== undefined && user !== null) {
+    //   let tasks = axios.post(
+    //     "https://bettymanager.herokuapp.com/api/user/tasks",
+    //     { user }
+    //   );
+    // }
   }
 
   render() {
