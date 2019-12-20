@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Formulario } from "./commons/styleds/Formulario";
+import { Alert } from "react-alert";
 class Form extends Component {
   handleSubmit(e, signup, handler, state) {
     e.preventDefault();

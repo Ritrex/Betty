@@ -1,7 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Form from "./components/Form";
-import { NavLink, Redirect } from "react-router-dom";
+import FormProceso from "./components/FormProceso";
+import Folder from "./components/commons/styleds/Folder";
+import { NavLink, Redirect, Link } from "react-router-dom";
 import { sign } from "crypto";
 import NavBar from "./components/commons/NavBar";
 import SideNav from "./components/commons/SideNav";
@@ -33,14 +35,7 @@ const Router = props => {
                 <h1 style={{ color: "white" }}>
                   {state.state.user ? "Tareas recientes" : `Bienvenido`}
                 </h1>
-                {state.state.user ? (
-                  ""
-                ) : (
-                  <div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                )}
+                {state.state.user ? <Folder></Folder> : ""}
 
                 {state.state.user ? (
                   <button
@@ -76,13 +71,13 @@ const Router = props => {
               </SheetContainer>
             )}
           </Route>
-          <Route exact path="/user/:userid/task/new">
+          <Route exact path="/task/new">
             {state.state.user ? (
-              <Redirect to="/"></Redirect>
-            ) : (
-              <SheetContainer>
-                <form></form>
+              <SheetContainer style={{ height: "100%", width: "80%" }}>
+                <FormProceso state={state} handler={handlers.handle} />
               </SheetContainer>
+            ) : (
+              <Redirect to="/"></Redirect>
             )}
           </Route>
           <Route exact path="/task/all">

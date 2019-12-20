@@ -66,11 +66,7 @@ export default class SideNav extends Component {
           ) : (
             <SideListElement link="/user/signup" content="Sign up" />
           )}
-          {user ? (
-            <SideListElement click={handlers.handleLogout} content="Log out" />
-          ) : (
-            ""
-          )}
+          {user ? <a onClick={handlers.handleLogout}>Logout</a> : ""}
         </SideList>
         {/* {user ? (
           <SideList>
@@ -87,7 +83,7 @@ export default class SideNav extends Component {
           <SideList>
             <h3>Trabajo</h3>
             <SideListElement
-              link="/user/:userid/task/new"
+              link="/task/new"
               content="Nuevo Trabajo"
             ></SideListElement>
           </SideList>

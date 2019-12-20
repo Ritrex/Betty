@@ -59,4 +59,7 @@ router.get("/:id", (req, res, next) => {
     });
 });
 
+router.get("/all", (req, res) => {
+  DeviceOrientationEvent.find().then(docs => {});
+});
 module.exports = router;

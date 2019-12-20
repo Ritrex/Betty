@@ -28,7 +28,8 @@ class App extends Component {
           handlers={{
             handleLogin: this.handleLogin,
             handleSignup: this.handleSignup,
-            handleLogout: this.handleLogout
+            handleLogout: this.handleLogout,
+            handleProcessSubmit: this.handleProcessSubmit
           }}
         />
       </div>
@@ -131,13 +132,32 @@ class App extends Component {
       });
   };
 
-  getUserTasks = (e, state) => {
+  getTasks = (e, state, setState) => {
     let { user } = this.state.state;
     axios
-      .post(`https://bettymanager.herokuapp.com/api/task/`)
-      .then()
-      .catch();
+      .get(`https://bettymanager.herokuapp.com/api/task/`)
+      .then(tasks => {
+        setState({ tasks: tasks });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
+
+  handleProcessSubmit(e, state, setState) {
+    let { user } = state.state;
+    axios
+      .post(`https://bettymanager.herokuapp.com/api/task/new`, { user })
+      .then(createdtask => {
+        let tasks = state.state.tasks ? state.state.tasks : [];
+        tasks.push(createdtask);
+        setState({ tasks });
+        console.log("task created successfully");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   createTask = (e, state, userid) => {};
 

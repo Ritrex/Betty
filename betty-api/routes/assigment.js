@@ -36,4 +36,14 @@ router.post("/:id", (req, res, next) => {
     });
 });
 
+router.get("/user", (req, res) => {
+  let { user } = req.body;
+  Assginment.find({ adminid: user.id })
+    .then(assginments => {
+      return res.status(200).json(assginments);
+    })
+    .catch(error => {
+      return res.status(404).json(error);
+    });
+});
 module.exports = router;
